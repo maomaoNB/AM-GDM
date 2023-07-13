@@ -1,0 +1,5 @@
+lightning:
+  trainer:
+    accelerator: ddp
+    gpus: 0,
+    max_epochs: 200
