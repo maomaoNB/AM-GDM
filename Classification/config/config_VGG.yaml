@@ -1,0 +1,33 @@
+# lightning:
+#   trainer:
+#     plugins: [DDPPlugin(find_unused_parameters=False)]
+
+model:
+  base_learning_rate: 4.5e-6
+  target: model.model.Classification
+  params:  # change to your own parameters
+      model:
+          target: module.vgg16.VGG16
+          params:
+              in_channels: 1
+              ndf: 64
+              stages: [2, 2, 3, 3, 3]
+              fc_layers: 3
+              num_classes: 2
+              pred_key: result
+              data_key: data
+              size: 224
+
+data:
+  target: main.DataModuleFromConfig
+  params:
+    batch_size: 3
+    num_workers: 8
+    train:
+      target: data.custom.CustomTrain
+      params:
+        training_file: data/datasets/data_nozero.csv
+    validation:
+      target: data.custom.CustomTest
+      params:
+        test_file: data/datasets/data_nozero.csv
