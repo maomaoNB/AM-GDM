@@ -1,5 +1,5 @@
 # AM-GDM
-
+AM-GDM is an advanced machine learning method based on transformer to improve the performance of early GDM prediction.
 # Data
 Diabetes data This is a table in which data is used to predict early Gestational diabetes.
 
